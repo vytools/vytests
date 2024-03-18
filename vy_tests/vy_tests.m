@@ -33,6 +33,9 @@ classdef vy_tests
             success &= obj.grade_check(actual{ii}, expctd{ii}, tol);
           endfor
         elseif isnumeric(actual) && isnumeric(expctd)
+          if size(actual) == size(expctd')
+            actual = actual';
+          endif
           if tol > 0
             success = all(abs(actual-expctd) <= tol);
           elseif actual == expctd
@@ -108,7 +111,7 @@ classdef vy_tests
         x = xy(1,:);
         y = xy(2,:);
       endif
-      mode = fi(line_width==0,"markers",fi(marker_size==0,"line", "lines+markers"));
+      mode = fi(line_width==0,"markers",fi(marker_size==0,"lines", "lines+markers"));
       result = obj.scatter_(label, mode, x, y);
       if marker_size ~= 0
         result.marker = struct("size",marker_size);

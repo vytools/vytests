@@ -7,6 +7,7 @@
 #include <sstream>
 #include <random>
 #include <iomanip>
+#include <functional>
 
 #include "nlohmann/json.hpp"
 
@@ -131,7 +132,7 @@ std::vector<std::pair<double,double>> sample(
   double xlo,
   double xhi,
   uint32_t n,
-  double f(double))
+  std::function<double(double)> f)
 {
   uint32_t niters = std::fmax(2,n);
   std::vector<std::pair<double,double>> data;
