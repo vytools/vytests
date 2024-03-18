@@ -33,9 +33,6 @@ classdef vy_tests
             success &= obj.grade_check(actual{ii}, expctd{ii}, tol);
           endfor
         elseif isnumeric(actual) && isnumeric(expctd)
-          if size(actual) == size(expctd')
-            actual = actual';
-          endif
           if tol > 0
             success = all(abs(actual-expctd) <= tol);
           elseif actual == expctd
